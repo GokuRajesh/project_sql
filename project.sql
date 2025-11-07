@@ -25,10 +25,18 @@ select * from empSalary;
 insert into empsalary values(101,2000,'Yes'),(102,10000,'Yes'),(103,5000,'No'),
 (104,1900,'Yes'),(105,2300,'Yes');
 
+# what is the department name for DeptId E-102?
 select deptname from empdept where deptid='E-102';
 
+# what is the total salary that is paid to the permanent employees?
 select sum(salary) from empsalary group by ispermanent having ispermanent='Yes';
 
+# List name of all employees whose name ends with a
 select empname from employee where empname like '%a';
 
-select empname from employee where empid in (select empid from empsalary where ispermanent='No');
+# select the name of the employee head who is not permanent
+select empname from employee 
+where empid=(select empheadid from employee where empheadid in (select empid from empsalary where ispermanent='No'));
+
+select empname from employee where empheadid in 
+(select empid from empsalary where ispermanent='No');
