@@ -12,7 +12,7 @@ insert into EmpProject values(101,'p-1','cl-1',2010,2010),(102,'p-2','cl-2',2010
 (105,'p-4','cl-5',2015,null);
 
 create table employee(empid int primary key,empname varchar(100), department 
-varchar(50),contactno bigint, emaildid varchar(100), empheadid int);
+varchar(50),contactno bigint, emailid varchar(100), empheadid int);
 select * from employee;
 
 create table empdept(deptid varchar(50) primary key,deptname varchar(100), dept_off varchar(100), 
@@ -37,6 +37,3 @@ select empname from employee where empname like '%a';
 # select the name of the employee head who is not permanent
 select empname from employee 
 where empid=(select empheadid from employee where empheadid in (select empid from empsalary where ispermanent='No'));
-
-select empname from employee where empheadid in 
-(select empid from empsalary where ispermanent='No');
